@@ -22,6 +22,13 @@ function register(server, options, next) {
             return reply('Server up.');
         }
     });
+    server.route({
+        method: 'GET',
+        path: '/backbone/useCase/{appName}',
+        handler: function(request, reply) {
+            return reply(EJSON.stringify(config)).header('Content-Type', 'application/json');
+        }
+    });
     config.namespaces.forEach(namespace => {
         namespace.relations.forEach(relation => {
             createRoute(server, namespace, relation);
@@ -58,7 +65,10 @@ function createRoute(server, namespace, relation) {
                     if (!result) {
                         return reply(Boom.notFound());
                     }
-                    return reply(EJSON.stringify(result)).header('Content-Type', 'application/json');
+                    let returnValue = {
+                        items: result
+                    };
+                    return reply(EJSON.stringify(returnValue)).header('Content-Type', 'application/json');
                 }).catch(function(err) {
                     return reply(Boom.badImplementation(err));
                 })

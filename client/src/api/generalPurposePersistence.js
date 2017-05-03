@@ -1,5 +1,7 @@
 import 'isomorphic-fetch';
 import hal from '../halUtilities';
+import config from '../config';
+let urlBeginning = config.urlBeginning;
 
 class HttpError extends Error {
     // constructor is optional; you should omit it if you just want a custom error
@@ -12,9 +14,9 @@ class HttpError extends Error {
 
 export function getUrlForRelation(namespace, relation, optionalId) {
     if (typeof optionalId !== 'undefined') {
-        return `/api/${namespace}/${relation}/${optionalId}`;
+        return urlBeginning +`${namespace}/${relation}/${optionalId}`;
     }
-    return `/api/${namespace}/${relation}`;
+    return urlBeginning + `${namespace}/${relation}`;
 }
 
 

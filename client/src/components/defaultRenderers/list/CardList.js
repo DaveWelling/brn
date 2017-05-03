@@ -123,14 +123,14 @@ export class CardList extends React.Component {
         if (columns && columns.length > 0) {
             if (newRecords && newRecords.length > 0) {
                 dataRowsNew = newRecords.map((rec, i) => {
-                    return (<Card key={rec._id} columns={columns} record={rec}
+                    return (<Card key={rec._id['$oid']} columns={columns} record={rec}
                                   onClick={this.cardClicked} highlight={i === 0}/>);
                 });
             }
 
             if (records && records.length > 0) {
                 dataRows = records.map((rec) => {
-                    return (<Card key={rec._id} columns={columns} record={rec}
+                    return (<Card key={rec._id['$oid']} columns={columns} record={rec}
                                   onClick={this.cardClicked}/>);
                 });
             }
@@ -204,7 +204,7 @@ function mapStateToProps(state, ownProps) {
     
     //Get the 'full' hNode representation of child nodes,
     //which, in the case of list-type components, are assumed to be viewers.
-    let listId = ownProps.hNode.id;
+    let listId = ownProps.hNode.id['$oid'];
     let rowClickAction = ownProps.hNode.rowClickAction;
 
     return {

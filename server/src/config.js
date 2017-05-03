@@ -9,7 +9,7 @@ function start(mongoUrl) {
     const cnnc = mongo.MongoClient.connect(mongoUrl + 'backbone', { db: { bufferMaxEntries: 0 } });
     return cnnc.then(db => {
         const collection = db.collection('useCase');
-        return collection.find({ title: 'RFID', deleted: { $exists: false } }, { meta: 0 }).next()
+        return collection.find({ title: 'BRN', deleted: { $exists: false } }, { meta: 0 }).next()
         .then(result => {
             config = result;
         });

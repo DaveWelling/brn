@@ -18,7 +18,8 @@ export default function submitAction(store, action, next) {
         let oldModel = formState.oldModel;
         let newModel = formState.newModel;
         let hNode = formState.hNode;
-        
+        let errors = [];
+
         validateAction(action);
         if (errors.length > 0) {
             store.dispatch({type: action.type + '_FAILURE', submit: {...action.submit, errors, warnings:[]}});

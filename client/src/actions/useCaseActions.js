@@ -2,7 +2,8 @@ import gpp from '../api/generalPurposePersistence';
 import * as types from './actionTypes';
 import * as ajax from './ajaxStatusActions';
 import {createAppReducers} from '../reducers/namespaceRelationReducer';
-
+import config from '../config';
+let urlBeginning = config.urlBeginning;
 export function loadUseCaseSuccess(useCase) {
 	return { type: types.LOAD_BACKBONE_USECASE_SUCCESS, load: {items:[useCase], activeRecord:useCase}};
 }
@@ -16,7 +17,7 @@ export function loadUseCase(appName) {
 
 		dispatch(ajax.beginAjaxCall('Loading Configuration'));
 
-        const url = '/api/backbone/useCase/' + appName;
+        const url = urlBeginning + 'backbone/useCase/' + appName;
 		return gpp.getAll(url).then(useCase =>{
 			createAppReducers(useCase);
 			dispatch(loadUseCaseSuccess(useCase));

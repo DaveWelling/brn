@@ -19,12 +19,12 @@ class LeftSideNavAppLayout extends React.Component {
     render() {
         return (
 
-            <div className="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+            <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
                 <header className="mdl-layout__header">
                     <div className="mdl-layout__header-row  mdl-color--indigo">
                         <div className="mdl-layout-spacer" />
                         <span className="mdl-layout-title currentPageName">
-                            {this.props.currentPage || 'Home'}
+                            Home
                         </span>
                     </div>
                 </header>
@@ -49,14 +49,12 @@ class LeftSideNavAppLayout extends React.Component {
 
 LeftSideNavAppLayout.propTypes = {
     children: PropTypes.array,
-    currentPage: PropTypes.string,
     loading: PropTypes.bool
 };
 
 function mapStateToProps(state, ownprops) {
     return {
         loading: state.ajaxStatus.ajaxCallsInProgress > 0,
-        currentPage
     };
 }
 

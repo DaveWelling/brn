@@ -163,7 +163,7 @@ export class SimpleList extends React.Component {
             if (newRecords && newRecords.length > 0) {
                 dataRowsNew = newRecords.map((rec, i) => {
                     return (
-                        <TableDataRow key={rec._id} columns={columns} record={rec} onRowClicked={this.rowClicked} highlight={i === 0}/>
+                        <TableDataRow key={rec._id['$oid']} columns={columns} record={rec} onRowClicked={this.rowClicked} highlight={i === 0}/>
                     );
                 });
             }
@@ -171,7 +171,7 @@ export class SimpleList extends React.Component {
             if (records && records.length > 0) {
                 dataRows = records.map((rec) => {
                     return (
-                        <TableDataRow key={rec._id} columns={columns} record={rec} onRowClicked={this.rowClicked}/>
+                        <TableDataRow key={rec._id['$oid']} columns={columns} record={rec} onRowClicked={this.rowClicked}/>
                     );
                 });
             }
@@ -247,7 +247,7 @@ function mapStateToProps(state, ownProps) {
     let isDirty = listHelpers.getIsDirty(state, namespace, relation);
 
     
-    let listId = ownProps.hNode.id;
+    let listId = ownProps.hNode.id['$oid'];
     let rowClickAction = ownProps.hNode.rowClickAction;
     return {
         columns,
