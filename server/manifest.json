@@ -1,0 +1,46 @@
+{
+  "connections": [
+    {
+      "host": "0.0.0.0",
+      "port": 10437
+
+    }
+  ],
+  "registrations": [
+    {
+      "plugin": {
+        "register": "good",
+        "options": {
+          "ops": {
+            "interval": 1000
+          },
+          "reporters": {
+            "console": [
+              {
+                "module": "good-squeeze",
+                "name": "Squeeze",
+                "args": [
+                  {
+                    "log": "*",
+                    "response": "*",
+                    "error": "*"
+                  }
+                ]
+              },
+              {
+                "module": "good-console"
+              },
+              "stdout"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "plugin": "./controller"
+    },
+    {
+      "plugin": "blipp"
+    }
+  ]
+}

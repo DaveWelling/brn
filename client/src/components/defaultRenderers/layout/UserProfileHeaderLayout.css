@@ -1,0 +1,47 @@
+.profileBoxInSideNav{
+    border-top: thin solid #06a7e2;
+    color: #06a7e2;
+    height: 64px;
+}
+.profileBoxName {
+    flex: auto;
+    padding-left: 1em;
+    padding-top: .5em;
+}
+.profileBoxInSideNav div {
+    display: flex;    
+}
+.profileBoxButtons {
+    justify-content: center;
+}.profileBoxButtons div {
+    padding: .75em;
+}
+/*.profileBoxInSideNav div span {
+    flex: auto;
+}
+.profileBoxInSideNav div div {
+    display: inline-block;
+    padding: 2px 0px 8px 24px;
+}*/
+.profileBoxInSideNav button{
+    background:none!important;
+    border:none;
+    padding:0!important;
+    font: inherit;
+    font-size: 10pt;
+    cursor: pointer;
+    margin: 0px;
+    color: #ffffff;
+    display: inline-flex; /* keep the inline nature of buttons */
+    align-items: flex-start; /* this is default */
+}
+.profileBoxInSideNav button:hover{
+    text-decoration:underline;
+}
+
+.profileBorderBox {    
+    border-top: thin solid #06a7e2;
+    margin-top: .25em;
+    margin-right: 2em;
+    margin-left: 2em;
+}
