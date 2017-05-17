@@ -40,7 +40,13 @@
       }
     },
     {
-      "plugin": "./controller"
+      "plugin": "./controller",
+      "options": {
+        "routes": {
+          "prefix": "/api"
+        }
+      }
+      
     },
     {
       "plugin": "blipp"

@@ -4,7 +4,7 @@ const ObjectId = mongo.ObjectId;
 const expect = require('expect');
 const repositoryInit = require('../../../src/repository').init;
 
-describe('splitPatchIfNecessary', function() {
+describe.skip('splitPatchIfNecessary', function() {
     let repos = [];
     before(function(done) {
         const entities = ['testJunk'];

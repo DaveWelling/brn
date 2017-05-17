@@ -1,0 +1,30 @@
+brn-mongo:
+  image: mongo:3.2
+  container_name: brn-mongo
+  restart: always
+  ports:
+  - "27017:27017"
+  log_opt:
+    max-size: "1m"
+    max-file: "3"
+  volumes:
+  - /data/db
+  environment:
+  - NODE_ENV=devel
+  
+
+brn-nginx:
+  image: brn-nginx
+  container_name: brn-nginx
+  restart: always
+  volumes:
+  - ./blockly/src/:/usr/share/nginx/html/:ro
+  #- ${BLOCKLY_SITE_DIRECTORY}:/usr/share/nginx/html:ro
+  extra_hosts:
+  - "DOCKER_HOST_IP:${DOCKER_HOST_IP}"
+  ports:
+  - "443:443"
+  - "80:80"
+  log_opt:
+    max-size: "1m"
+    max-file: "3"

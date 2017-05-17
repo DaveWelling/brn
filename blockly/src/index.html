@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Metadata Creator</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <script src="vendor/blockly_compressed.js"></script>
+    <script src="vendor/blocks_compressed.js"></script>
+    <script src="vendor/javascript_compressed.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background-color: #fff;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-weight: normal;
+            font-size: 140%;
+        }
+
+        table {
+            height: 100%;
+            width: 100%;
+        }
+
+        #blocklyArea {
+            height: 100%;
+        }
+        #blocklyDiv {
+            width:100%;
+            height:100%;
+        }
+        #generatedCode {
+            height: 100%;
+            width: 100%;
+        }
+        #codeArea {
+            display: none;
+            width: 0px;
+        }
+        #toolbar {
+            position:absolute; 
+            right: 1em; 
+            top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="toolbar">
+        <button class="btn btn-default" id="collapseNavHeadings" onclick="mdc.collapseNavHeadings();">Collapse Stuff</button>
+        <button class="btn btn-default" id="toggleCode" onclick="mdc.toggleCode();">Show Code</button>
+        <b>|</b>
+        <input type="file" id="fileElem" accept=".json" style="display:none" onchange="mdc.services.getIntermediateDal(this.files[0])" >
+        <a class="btn btn-primary" href="#" id="fileSelect">Load</a>        
+        <button class="btn btn-success" id="saveMetaData" onclick="mdc.services.saveIntermediateDal('useCase');">Save</button>
+        <button class="btn btn-warning" id="deployMetaData" data-toggle="modal" data-target="#myModal">Deploy</button>
+        <button class="btn btn-danger" id="clearWorkspace" onclick="mdc.clearWorkspace();">Clear</button>
+    </div>
+    <table>
+        <tr>
+            <td>
+                <h1>Metadata Creator</h1>
+            </td>
+        </tr>
+        <tr>
+            <td id="blocklyArea">                
+                <div id="blocklyDiv"></div>
+            </td>
+            <td id="codeArea" style="padding-top:3px;" >
+                <textarea id="generatedCode"></textarea>
+            </td>
+        </tr>
+    </table>
+    <!-- Deploy Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Deploy This Metadata</h4>
+                </div>
+                <div class="modal-body">
+                    <h1>Are you sure you would like to deploy this use case? This will overwrite any previous instances of this release number.</h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="mdc.services.deploy.saveUseCase()">Deploy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Handle the Load (for workspace) link (tricky because using a link to load a file)
+        var fileSelect = document.getElementById("fileSelect"),
+        fileElem = document.getElementById("fileElem");
+
+        fileSelect.addEventListener("click", function (e) {
+        if (fileElem) {
+            fileElem.click();
+        }
+        e.preventDefault(); // prevent navigation to "#"
+        }, false);
+    </script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="vendor/en.js"></script>
+    <script src="vendor/lodash.min.js"></script>
+    <script src="vendor/xml2json.min.js"></script>
+
+    <script src="app/declareCodeNamespaces.js"></script>
+    <script src="app/startup/buildTree.js"></script>
+    <script src="app/utilities/colorTransforms.js"></script>
+    <script src="app/utilities/ObjectId.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/staticBlockDefs.js"></script>
+    <script src="app/startup/overrideJsGenerateForJson.js"></script>
+    <script src="app/startup/startingToolbox.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/_BaseMdcBlockGroup.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/layouts.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/appLayouts.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/dataViews.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/graphs.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/detailPanes.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/forms.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/formButtons.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/formElements.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/lists.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/listColumns.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/navs.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/navHeadings.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/actionElements.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/dialogs.js"></script>
+    <script src="app/ensureCamelCaseForMetaDataNames.js"></script>
+    <script src="app/startup/initializeBlockly.js"></script>
+    <script src="app/services/deployService.js"></script>
+    <script src="app/services/workspaceService.js"></script>
+    <script src="app/populateDropdowns.js"></script>
+    <script src="app/startup/addAllMdcBlockGroups/staticBlockCodeGenerators.js"></script>
+    <script src="app/index.js"></script>
+</body>
+
+</html>

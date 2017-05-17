@@ -1,0 +1,39 @@
+{
+  "name": "blockly-metadata-creator",
+  "version": "1.0.0",
+  "description": "Client UI for building metadata with Blockly",
+  "main": "index.js",
+  "dependencies": {
+    "blockly": "^1.0.0",
+    "lodash": "^4.17.4",
+    "x2js": "git+https://github.com/abdmob/x2js.git"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-plugin-dependencies": "^2.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
+    "ncp": "^2.0.0"
+  },
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "build": "node ./tools/build.js",
+    "dockerBuild": "docker build -t metadatacreator . ",
+    "docker": "docker run -p 1350:80 -d metadatacreator"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://sstdev.visualstudio.com/DefaultCollection/Backbone/_git/tool_metadata-creator-blockly"
+  },
+  "keywords": [
+    "metadata",
+    "blockly"
+  ],
+  "author": "Dave Welling",
+  "license": "MIT",
+  "config": {
+    "doCodeCoverageWithTests": false,
+    "sendReportsToTeamCity": false
+  }
+}

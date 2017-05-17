@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import HNode from './HNode';
-import {compare} from '../../../isomorphic/jsonPatch';
+import {compare} from '../helpers/jsonPatch';
 
 
 

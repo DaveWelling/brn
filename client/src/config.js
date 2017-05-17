@@ -1,5 +1,6 @@
 export default {
-	userName: 'defaultUser',
+    configNamespace: 'backbone',
+    configRelation: 'useCase',
 	defaultMetaFields : ['_id'],
-    urlBeginning : 'http://localhost:10437/'
+    urlBeginning : 'http://localhost/api/'
 };

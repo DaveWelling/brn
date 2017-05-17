@@ -1,0 +1,41 @@
+brn-mongo:
+  image: mongo:3.2
+  container_name: brn-mongo
+  restart: always
+  ports:
+  - "27017:27017"
+  log_opt:
+    max-size: "1m"
+    max-file: "3"
+  volumes:
+  - /data/db
+  environment:
+  - NODE_ENV=devel
+  
+brn-server:
+  restart: always
+  image: brn-server
+  container_name: brn-server  
+  links:
+   - brn-mongo
+  ports:
+  - "10437:10437"
+  log_opt:
+    max-size: "1m"
+    max-file: "3"
+  environment:
+  - MONGO_HOST=brn-mongo
+  - NODE_ENV=devel
+
+brn-nginx:
+  image: brn-nginx
+  container_name: brn-nginx
+  restart: always
+  links:
+   - brn-server
+  ports:
+  - "443:443"
+  - "80:80"
+  log_opt:
+    max-size: "1m"
+    max-file: "3"

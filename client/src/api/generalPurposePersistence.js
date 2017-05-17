@@ -14,9 +14,9 @@ class HttpError extends Error {
 
 export function getUrlForRelation(namespace, relation, optionalId) {
     if (typeof optionalId !== 'undefined') {
-        return urlBeginning +`${namespace}/${relation}/${optionalId}`;
+        return urlBeginning +`${config.useCaseName}/${namespace}/${relation}/${optionalId}`;
     }
-    return urlBeginning + `${namespace}/${relation}`;
+    return urlBeginning + `${config.useCaseName}/${namespace}/${relation}`;
 }
 
 

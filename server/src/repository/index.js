@@ -1,5 +1,5 @@
 const mongo = require('mongodb');
-const mongoUrl = 'mongodb://localhost:27017/';
+const config = require('../config');
 const patchToMongo = require('./patchToMongo');
 const ObjectId = mongo.ObjectId;
 const Boom = require('boom');
@@ -10,8 +10,8 @@ module.exports = {
 };
 
 function init(namespace, relation) {
-    const url = mongoUrl + namespace.title;
-    const cnnc = mongo.MongoClient.connect(url, { db: { bufferMaxEntries: 0 } });
+    const url = config.mongoUrl + namespace.title;
+    const cnnc = mongo.MongoClient.connect(url, {db: {bufferMaxEntries: 0}});
     return cnnc.then(db => repository(db.collection(relation.title)));
 }
 
@@ -24,11 +24,15 @@ function repository(collection) {
         remove,
         get,
         getAll,
+        getByTitle,
         patch
     };
 
     function insert(document) {
-        return _collection.insert(document);
+        if (typeof document._id !== 'object') {
+            document._id = ObjectId.createFromHexString(document._id);
+        }
+        return _collection.insertOne(document);
     }
 
     function update(document) {
@@ -51,7 +55,11 @@ function repository(collection) {
     }
 
     function remove(id) {
-        return _collection.updateOne({ _id: id }, { $set: { deleted: true } });
+        if (typeof id !== 'object') {
+            id = ObjectId.createFromHexString(id);
+        }
+        return _collection.deleteOne({_id: id});
+        // return _collection.updateOne({ _id: id }, { $set: { deleted: true } });
     }
 
     function get(id) {
@@ -60,5 +68,22 @@ function repository(collection) {
 
     function getAll() {
         return _collection.find({ deleted: { $exists: false } }, { meta: 0 }).toArray();
+    }
+    function getByTitle(title) {
+        if (!title) {
+            throw new Error('A title is required for this get operation.');
+        }
+        let query = {
+            'title': title,
+            'meta.deleted': {
+                $exists: false
+            }
+        };
+        return _collection
+                .find(
+                    query, {
+                        'meta': 0,
+                        'originalContent': 0
+                    }).next();
     }
 }

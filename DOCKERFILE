@@ -1,0 +1,7 @@
+#For serving client side html and javascript 
+FROM nginx
+RUN rm /etc/nginx/conf.d/default.conf
+COPY blockly/src /var/www/blockly
+COPY client/build /var/www/client
+#COPY nginx/nginx.prod.conf /etc/nginx/nginx.conf
+CMD 'nginx'

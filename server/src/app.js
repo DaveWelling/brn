@@ -1,7 +1,6 @@
 const manifest = require('../manifest.json');
 const glue = require('glue');
 const options = { relativeTo: __dirname };
-const url = 'mongodb://localhost:27017/';
 const config = require('./config');
 
 const glueCallback = function(err, server) {
@@ -17,8 +16,5 @@ const glueCallback = function(err, server) {
     });
 };
 
-config.start(url).then(() => {
-    glue.compose(manifest, options, glueCallback);
-}).catch(err => {
-    console.error(err);
-});
+
+glue.compose(manifest, options, glueCallback);

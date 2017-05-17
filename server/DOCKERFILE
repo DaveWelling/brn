@@ -1,0 +1,29 @@
+# Build:
+# docker build --build-arg NODE_VERSION=7.5.0 -t brn:1.0.0 -t brn:latest .
+#
+# Run:
+# docker run -it brn:1.0.0
+#
+# Compose:
+# docker-compose up -d
+
+# The version here corresponds to the NodeJS runtime version.
+# If you update the base image here to bump the node version you MUST also update TeamCity
+# to use the same version.
+FROM mhart/alpine-node:7.7.4
+
+RUN mkdir -p /opt/brn/public
+WORKDIR /opt/brn
+
+# Share local directory on the docker container
+ADD . /opt/brn
+
+ENV NODE_ENV devel
+
+EXPOSE 10437:10437
+
+# Port 5858 for node debug
+EXPOSE 5858:5858
+
+# Run backbone server
+CMD ["npm", "start"]

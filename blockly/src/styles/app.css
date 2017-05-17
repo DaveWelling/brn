@@ -1,0 +1,3 @@
+#blocklyDiv > div > svg.blocklyWsDragSurface {
+    overflow: visible;
+}

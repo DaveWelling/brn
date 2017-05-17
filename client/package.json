@@ -2,6 +2,7 @@
   "name": "blockly-react-node",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:10437",
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

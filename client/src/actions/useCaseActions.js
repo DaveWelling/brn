@@ -12,12 +12,13 @@ export function loadUseCaseFailure(error){
 	return {type: types.LOAD_BACKBONE_USECASE_FAILURE, load: {errors: [error]}};
 }
 
-export function loadUseCase(appName) {
+export function loadUseCase(useCaseName) {
 	return function (dispatch, getState) {
 
 		dispatch(ajax.beginAjaxCall('Loading Configuration'));
 
-        const url = urlBeginning + 'backbone/useCase/' + appName;
+        const url = `${urlBeginning}${config.configNamespace}/${config.configRelation}/${useCaseName}`;
+        config.useCaseName = useCaseName;
 		return gpp.getAll(url).then(useCase =>{
 			createAppReducers(useCase);
 			dispatch(loadUseCaseSuccess(useCase));

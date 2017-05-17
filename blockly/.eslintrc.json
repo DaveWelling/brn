@@ -1,0 +1,50 @@
+{
+    "extends": [
+        "eslint:recommended"
+    ],
+    "plugins": [
+        "dependencies"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true,
+        "jquery": false,
+        "mocha": true
+    },
+    "globals": {
+        "Blockly": true,
+        "mdc": true, 
+        "_": true,
+        "X2JS": true,
+        "ObjectId": true,
+        "toastr": true
+    },
+    "rules": {
+        "quotes": [2, "single", "avoid-escape"],
+        "no-console": 1,
+        "camelcase": 1,
+        "array-bracket-spacing": [1, "never"],
+        "space-in-parens": [1, "never"],
+        "no-debugger": 1,
+        "no-var": 1,
+        "semi": [2, "always"],
+        "no-trailing-spaces": 0,
+        "eol-last": 0,
+        "no-unused-vars": 1,
+        "no-underscore-dangle": 0,
+        "no-alert": 0,
+        "no-lone-blocks": 0,
+        "dependencies/case-sensitive": 1,
+        "dependencies/no-cycles": 1,
+        "dependencies/no-unresolved": 1,
+        "dependencies/require-json-ext": 1
+    }
+}

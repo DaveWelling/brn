@@ -1,5 +1,5 @@
 import persistence, {getUrlForRelation} from '../../../api/generalPurposePersistence';
-const compare = require('../../../../../isomorphic/jsonPatch').compare;
+import {compare} from '../../../helpers/jsonPatch';
 import {beginAjaxCall, ajaxCallError, endAjaxCall} from '../../../actions/ajaxStatusActions';
 import submitFailedAction from './submitFailedAction';
 import submitSuccessAction from './submitSuccessAction';
