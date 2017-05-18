@@ -67,23 +67,5 @@ mdc.startup.initializeBlockly = function () {
         if (window.confirm('Are you sure you want to clear this?'))
             mdc.workspace.clear();
     };
-    mdc.collapseNavHeadings = function(){
-        let blocks = mdc.workspace.getAllBlocks();
-        let navHeadings = blocks.filter(block=> { 
-            let pieces = block.type.split('_');
-            let typeGroup = pieces[0];
-            let type = pieces.length>1 ? pieces[1] : '';
-            switch (typeGroup) {
-                case 'navHeading':
-                case 'namespace':
-                    return true;    
-                case 'layout':
-                    return (type === 'UserProfileHeaderLayout');
-                default:
-                    return false;
-            }
-        });
-        navHeadings.forEach(block=>block.setCollapsed(true));
-    };
 };
 

@@ -6,9 +6,10 @@
   "config": {},
   "scripts": {
     "junk": "node -e \"require('./tools/devBuild').populateDockerComposeTemplate()\"",
-    "startDev": "npm-run-all createDockerComposeFile docker-compose openPages parallelServers",
+    "startDev": "npm-run-all docker-compose-down nginx-docker-build createDockerComposeFile docker-compose openPages parallelServers",    
     "openPages": "node -e \"require('./tools/devBuild').openPages()",
     "parallelServers": "run-p client-start server-start nginx-start",
+    "docker-compose-down": "docker-compose down",
     "docker-compose": "docker-compose -f docker-compose.yml up -d",
     "install-all": "npm install && npm-run-all blockly-install client-install server-install",
     "build": "npm-run-all blockly-build client-build",

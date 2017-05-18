@@ -104,7 +104,7 @@
             block.appendValueInput('securityModifier')
                 .setCheck('securityModifier')
                 .setAlign(Blockly.ALIGN_RIGHT)
-                .appendField(new Blockly.FieldImage('/media/images/Whitelock.png', 25, 25, '*'));
+                .appendField(new Blockly.FieldImage('./media/images/Whitelock.png', 25, 25, '*'));
             // find first statement input
             let firstStatementInput = block.inputList.find(input=>input.type === Blockly.NEXT_STATEMENT);
             if (firstStatementInput) {

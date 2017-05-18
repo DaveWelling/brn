@@ -28,7 +28,7 @@ export default function submitAction(store, action, next) {
             
         }
 
-        if (action.submit.createNew) {
+        if (formState.isNew) {
             // Create/insert a new document
             store.dispatch(beginAjaxCall('Saving'));
             const url = getUrlForRelation(hNode.namespace, hNode.relation);

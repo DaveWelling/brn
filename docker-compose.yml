@@ -17,11 +17,8 @@ brn-nginx:
   image: brn-nginx
   container_name: brn-nginx
   restart: always
-  volumes:
-  - ./blockly/src/:/usr/share/nginx/html:ro
-  #- C:\Code\Talks\blockly-react-node\blockly\src:/usr/share/nginx/html/:ro
   extra_hosts:
-  - "DOCKER_HOST_IP:192.168.0.106"
+  - "DOCKER_HOST_IP:192.168.0.101"
   ports:
   - "443:443"
   - "80:80"

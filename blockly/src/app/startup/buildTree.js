@@ -1,5 +1,13 @@
 
 mdc.startup.buildTree = {
+    actionElement: {
+        includeSecurityModifiers: true,
+        blockTypesAllowedToFollowThisOne: ['actionElement', 'layout', 'dataView'],
+        groupDescription: 'Data entry or action (i.e. button) control which is not attached to a form.',
+        controls: [
+            'Button'
+        ]
+    } ,
     appLayout:  {
         includeSecurityModifiers: false,
         allowedChildrenTypes: ['layout'],
@@ -53,7 +61,7 @@ mdc.startup.buildTree = {
     },
     layout: {
         includeSecurityModifiers: true,
-        allowedChildrenTypes: ['layout', 'list', 'form', 'detailPane'],
+        allowedChildrenTypes: ['layout', 'list', 'form', 'detailPane', 'actionElement'],
         blockTypesAllowedToFollowThisOne: ['layout','nav'],
         groupDescription: 'A container to organize controls.',
         controls:[

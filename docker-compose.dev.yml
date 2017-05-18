@@ -17,9 +17,6 @@ brn-nginx:
   image: brn-nginx
   container_name: brn-nginx
   restart: always
-  volumes:
-  - ./blockly/src/:/usr/share/nginx/html/:ro
-  #- ${BLOCKLY_SITE_DIRECTORY}:/usr/share/nginx/html:ro
   extra_hosts:
   - "DOCKER_HOST_IP:${DOCKER_HOST_IP}"
   ports:
