@@ -1,9 +1,9 @@
 # blockly-react-node
 
 
-> Proof of concept for creating dataentry apps quickly using Blockly to describe the app, Node to host it and React to power the UI.
+> Proof of concept for creating data entry apps quickly using Blockly to describe the app, Node to host it and React to power the UI.
 
-TODO: Fill out this long description.
+
 
 ## Table of Contents
 
@@ -54,6 +54,8 @@ If you'd prefer to do things the old-fashioned way I don't blame you.
  * React Client
  
     Go to the ./client directory and type npm start
+
+Note: you may find places where you run into CORS issues or URLs that aren't quite right because they were written with Nginx or a reverse proxy in mind.
 
 ## API
 
