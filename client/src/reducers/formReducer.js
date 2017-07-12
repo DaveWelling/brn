@@ -1,5 +1,7 @@
 import initialState from './initialState';
 import getStore, {injectAsyncReducer} from '../store';
+import ObjectId from '../helpers/ObjectId';
+
 // An instance of this is created whenever a form is needed for the first time.
 // Currently, EDIT and NEW actions will create the form if it doesn't exist.
 export default function createFormReducer(namespace, relation){
@@ -29,7 +31,7 @@ export default function createFormReducer(namespace, relation){
             case newSuccessActionType:
                 return {...state, submitting: false, errors: [], warnings: [], 
                     isNew: true, oldModel: action.new.activeRecord || {}, 
-                    newModel: action.new.activeRecord || {}};
+                    newModel: action.new.activeRecord || {_id: new ObjectId().toString()}};
             case editSuccessActionType:
                 return {...state, submitting: false, errors: [], warnings: [], 
                     isNew: false, oldModel: action.edit.activeRecord, newModel: action.edit.activeRecord};

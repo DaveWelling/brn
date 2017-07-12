@@ -1,6 +1,7 @@
 import React from 'react';import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NotificationsSnackbar from '../NotificationsSnackbar';
+import logo from '../../../images/BRN_logo.png';
 
 
 class LeftSideNavAppLayout extends React.Component {
@@ -39,7 +40,7 @@ class LeftSideNavAppLayout extends React.Component {
 
                 <footer className="mdl-mega-footer">
                     <div className="mdl-mega-footer__bottom-section">
-                        <div className="mdl-logo loginFooterImage"><img alt="Blue SST" src="/images/SST-logo-blue-transparent.png"/></div>
+                        <div className="mdl-logo loginFooterImage"><img alt="Logo" src={logo}/></div>
                     </div>
                 </footer>
             </div>
