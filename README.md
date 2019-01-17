@@ -17,7 +17,7 @@
 ## Background
 Code generation, dynamic applications and DSLs are often problematic unless there are large economies of scale.  In other words, the effort in creating them is usually not justified by the total time they save across all consumers.
 This project is intended to demonstrate how a dynamic language (JavaScript w/ReactJS), a "schema-less" database (MongoDB) and hierarchical metadata DSL could offer less friction and increase ROI.
-For more background and information about how the app is composed, go here: http://theredcircuit.com/2017/05/17/reactjs-mongodb-blockly-create-data-entry-sites-fast/
+For more background and information about how the app is composed, go here: http://theredcircuit.com
 ## Install
 
 The app contains an install script which will pull down all the necessary node modules.
